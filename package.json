@@ -4,6 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start": "parcel",
+        "build": "parcel build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -17,11 +19,15 @@
     },
     "homepage": "https://github.com/StanislavNikov/myFlix-client#readme",
     "dependencies": {
+        "@babel/standalone": "^7.17.9",
         "axios": "^0.26.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "cors": "^2.8.5",
+        "prop-types": "^15.8.1",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
     },
     "devDependencies": {
+        "@emotion/babel-plugin": "^11.9.2",
         "@parcel/transformer-sass": "^2.0.0-rc.0"
     }
 }
