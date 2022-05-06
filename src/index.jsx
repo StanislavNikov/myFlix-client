@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MainView } from './components/main-view/main-view';
 import axios from 'axios';
+import assert from 'assert';
+import { MainView } from './components/main-view/main-view';
 
 // Import statement to indicate that you need to bundle "./index.scss"
 import './style.scss';
@@ -9,9 +10,7 @@ import './style.scss';
 // Main component
 class MyFlixApplication extends React.Component {
   render() {
-    return (
-      <MainView />
-    );
+    return <MainView />;
   }
 }
 

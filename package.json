@@ -2,7 +2,6 @@
     "name": "myflix-client",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
     "scripts": {
         "start": "parcel",
         "build": "parcel build",
@@ -18,16 +17,19 @@
         "url": "https://github.com/StanislavNikov/myFlix-client/issues"
     },
     "homepage": "https://github.com/StanislavNikov/myFlix-client#readme",
+    "devDependencies": {
+        "@babel/core": "^7.17.10",
+        "@parcel/transformer-sass": "^2.5.0",
+        "assert": "^2.0.0",
+        "buffer": "^6.0.3",
+        "path-browserify": "^1.0.1",
+        "process": "^0.11.10"
+    },
     "dependencies": {
-        "@babel/standalone": "^7.17.9",
-        "axios": "^0.26.1",
+        "axios": "^0.27.2",
         "cors": "^2.8.5",
         "prop-types": "^15.8.1",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0"
-    },
-    "devDependencies": {
-        "@emotion/babel-plugin": "^11.9.2",
-        "@parcel/transformer-sass": "^2.0.0-rc.0"
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0"
     }
 }
