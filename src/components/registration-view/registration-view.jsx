@@ -10,7 +10,6 @@ export function RegistrationView(props) {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('form submitted');
-    /* props.onRegister(false); */
   };
 
   return (
@@ -22,8 +21,9 @@ export function RegistrationView(props) {
           value={username}
           placeholder="Username"
           onChange={(e) => {
-            console.log('handle change', e); setUsername(e.target.value)}
-            }
+            console.log('handle change', e);
+            setUsername(e.target.value);
+          }}
           required
         />
       </label>
@@ -35,8 +35,9 @@ export function RegistrationView(props) {
           value={password}
           placeholder="Password"
           onChange={(e) => {
-            console.log('handle change', e); setPassword(e.target.value)}
-            }
+            console.log('handle change', e);
+            setPassword(e.target.value);
+          }}
           required
         />
       </label>
@@ -48,8 +49,9 @@ export function RegistrationView(props) {
           value={email}
           placeholder="Email"
           onChange={(e) => {
-            console.log('handle change', e); setEmail(e.target.value)}
-            }
+            console.log('handle change', e);
+            setEmail(e.target.value);
+          }}
           required
         />
       </label>
@@ -61,8 +63,9 @@ export function RegistrationView(props) {
           value={birthday}
           placeholder="Birthday"
           onChange={(e) => {
-            console.log('handle change', e); setBirthday(e.target.value)}
-            }
+            console.log('handle change', e);
+            setBirthday(e.target.value);
+          }}
           required
         />
       </label>
@@ -71,5 +74,5 @@ export function RegistrationView(props) {
         Register
       </button>
     </form>
-  );
+  ); // fix prettier!
 }
