@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 export function RegistrationView(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log('form submitted');
+    console.log("form submitted");
   };
 
   return (
@@ -17,11 +17,11 @@ export function RegistrationView(props) {
       <label>
         Username:
         <input
-          type="text"
+          type='text'
           value={username}
-          placeholder="Username"
+          placeholder='Username'
           onChange={(e) => {
-            console.log('handle change', e);
+            console.log("handle change", e);
             setUsername(e.target.value);
           }}
           required
@@ -31,11 +31,11 @@ export function RegistrationView(props) {
       <label>
         Password:
         <input
-          type="password"
+          type='password'
           value={password}
-          placeholder="Password"
+          placeholder='Password'
           onChange={(e) => {
-            console.log('handle change', e);
+            console.log("handle change", e);
             setPassword(e.target.value);
           }}
           required
@@ -45,11 +45,11 @@ export function RegistrationView(props) {
       <label>
         Email:
         <input
-          type="email"
+          type='email'
           value={email}
-          placeholder="Email"
+          placeholder='Email'
           onChange={(e) => {
-            console.log('handle change', e);
+            console.log("handle change", e);
             setEmail(e.target.value);
           }}
           required
@@ -59,18 +59,18 @@ export function RegistrationView(props) {
       <label>
         Birthday:
         <input
-          type="date"
+          type='date'
           value={birthday}
-          placeholder="Birthday"
+          placeholder='Birthday'
           onChange={(e) => {
-            console.log('handle change', e);
+            console.log("handle change", e);
             setBirthday(e.target.value);
           }}
           required
         />
       </label>
 
-      <button type="submit" onClick={handleRegister}>
+      <button type='submit' onClick={handleRegister}>
         Register
       </button>
     </form>
