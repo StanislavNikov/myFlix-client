@@ -1,32 +1,58 @@
 import React, { useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
 import axios from "axios";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // Declare hook for each input
+  const [usernameErr, setUsernameErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+
+  // validate user inputs
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameErr("Username required!");
+      isReq = false;
+    } else if (username.length < 3) {
+      setUsernameErr("Username must be at least 3 characters long!");
+      isReq = false;
+    }
+
+    if (!password) {
+      setPasswordErr("Password required!");
+      isReq = false;
+    } else if (password.length < 6) {
+      setPasswordErr("Password must be at least 6 characters long!");
+      isRreq = false;
+    }
+    return isReq;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("https://myflixxxdb.herokuapp.com/login", {
-        Username: username,
-        Password: password,
-      })
-      .then((response) => {
-        const data = response.data;
-        props.onLoggedIn(data);
-      })
-      .catch((error) => {
-        console.log("no such user", error);
-      });
-    /* console.log('--------', password); */
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    /* props.onLoggedIn(username); */
+    const isReq = validate();
+    if (isReq) {
+      axios
+        .post("https://myflixxxdb.herokuapp.com/login", {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          const data = response.data;
+          props.onLoggedIn(data);
+        })
+        .catch((error) => {
+          console.log("no such user", error);
+        });
+      /* console.log('--------', password); */
+      /* Send a request to the server for authentication */
+      /* then call props.onLoggedIn(username) */
+      /* props.onLoggedIn(username); */
+    }
   };
 
   return (
@@ -36,8 +62,12 @@ export function LoginView(props) {
           Username:
           <Form.Control
             type='text'
+            placeholder='Enter your username'
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          {/* code added here to display validation error */}
+          {usernameErr && <p>{usernameErr}</p>}
         </Form.Label>
       </Form.Group>
 
@@ -46,8 +76,12 @@ export function LoginView(props) {
           Password:
           <Form.Control
             type='password'
+            placeholder='Enter your password'
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {/* code added here to display validation error */}
+          {passwordErr && <p>{passwordErr}</p>}
         </Form.Label>
       </Form.Group>
 
