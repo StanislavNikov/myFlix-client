@@ -62,6 +62,14 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
+  onLoggedOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    this.setState({
+      user: null,
+    });
+  }
+
   getMovies(token) {
     axios
       .get("https://myflixxxdb.herokuapp.com/movies", {
@@ -103,6 +111,13 @@ export class MainView extends React.Component {
 
     return (
       <Row className='justify-content md-center main-view'>
+        <button
+          onClick={() => {
+            this.onLoggedOut();
+          }}
+        >
+          Logout
+        </button>
         {selectedMovie ? (
           <Col md={8}>
             <MovieView
