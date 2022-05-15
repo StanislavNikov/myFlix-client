@@ -1,11 +1,14 @@
 import React from "react";
 import axios from "axios";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
-import { Col, Row } from "react-bootstrap";
+import { DirectorView } from "../director-view/director-view";
+import { GenreView } from "../genre-view/genre-view";
+import { Col, Row, Button } from "react-bootstrap";
 
 export class MainView extends React.Component {
   constructor() {
@@ -107,40 +110,86 @@ export class MainView extends React.Component {
       );
     }
 
-    if (movies.length === 0) return <div className='main-view'></div>;
+    if (movies.length === 0) return <div className="main-view">Loading...</div>;
 
     return (
-      <Row className='justify-content md-center main-view'>
-        <button
-          onClick={() => {
-            this.onLoggedOut();
-          }}
-        >
-          Logout
-        </button>
-        {selectedMovie ? (
-          <Col md={8}>
-            <MovieView
-              movieData={selectedMovie}
-              onBackClick={(newSelectedMovie) => {
-                this.setSelectedMovie(newSelectedMovie);
-              }}
-            />
-          </Col>
-        ) : (
-          movies.map((movie) => (
-            <Col md={3}>
-              <MovieCard
-                key={movie.__id}
-                movieData={movie}
-                onMovieClick={(movie) => {
-                  this.setSelectedMovie(movie);
-                }}
-              />
-            </Col>
-          ))
-        )}
-      </Row>
+      <Router>
+        <Row className="main-view justify-content-md-center">
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return movies.map((movie) => (
+                <Col md={3} key={movie._id}>
+                  <MovieCard movie={movie} />
+                </Col>
+              ));
+            }}
+          />
+
+          <Route
+            path="/movies/:movieId"
+            render={({ match, history }) => {
+              return (
+                <Col md={8}>
+                  <MovieView
+                    movie={movies.find((m) => m._id === match.params.movieId)}
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          />
+
+          <Route
+            path="/directors/:name"
+            render={({ match, history }) => {
+              if (movies.length === 0)
+                return <div className="main-view">Loading...</div>;
+              return (
+                <Col md={8}>
+                  <DirectorView
+                    director={
+                      movies.find(
+                        (movie) => movie.Director.Name === match.params.name
+                      ).Director
+                    }
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          />
+
+          <Route
+            path="/genres/:name"
+            render={({ match, history }) => {
+              if (movies.length === 0)
+                return <div className="main-view">Loading...</div>;
+              return (
+                <Col md={8}>
+                  <GenreView
+                    genre={
+                      movies.find(
+                        (movie) => movie.Genre.Name === match.params.name
+                      ).Genre
+                    }
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          />
+
+          <Button
+            onClick={() => {
+              this.onLoggedOut();
+            }}
+          >
+            Logout
+          </Button>
+        </Row>
+      </Router>
     );
   }
 }
@@ -148,3 +197,37 @@ export class MainView extends React.Component {
 console.log("=========");
 
 // "jsxSingleQuote": true - NOT WORKING!!!
+
+/*  <Router>
+        <Row className="justify-content md-center main-view">
+          <button
+            onClick={() => {
+              this.onLoggedOut();
+            }}
+          >
+            Logout
+          </button>
+          {selectedMovie ? (
+            <Col md={8}>
+              <MovieView
+                movieData={selectedMovie}
+                onBackClick={(newSelectedMovie) => {
+                  this.setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          ) : (
+            movies.map((movie) => (
+              <Col md={3}>
+                <MovieCard
+                  key={movie.__id}
+                  movieData={movie}
+                  onMovieClick={(movie) => {
+                    this.setSelectedMovie(movie);
+                  }}
+                />
+              </Col>
+            ))
+          )}
+        </Row>
+      </Router> */

@@ -1,32 +1,42 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import React from "react";
+import PropTypes from "prop-types";
+import { Row, Col, Card, Button, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movieData, onMovieClick } = this.props;
+    const { movie } = this.props;
 
     return (
       <Card>
         <Card.Img
-          style={{ width: '15rem' }}
+          style={{ width: "15rem" }}
           variant="top"
-          src={movieData.ImageURL}
+          src={movie.ImageURL}
         />
+
         <Card.Body>
-          <Card.Title>{movieData.Title}</Card.Title>
-          <Card.Text>{movieData.Description}</Card.Text>
-          <Button
-            onClick={() => {
-              onMovieClick(movieData);
-            }}
-            variant="link"
-          >
-            Open
-          </Button>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Card.Text>{movie.Description}</Card.Text>
+
+          <Link to={`/movies/${movie._id}`}>
+            <Button style={{ textDecoration: "none" }} variant="link">
+              Open
+            </Button>
+          </Link>
         </Card.Body>
       </Card>
     );
   }
+}
+
+{
+  /* <Button
+onClick={() => {
+  onMovieClick(movieData);
+}}
+variant="link"
+>
+Open
+</Button> */
 }
