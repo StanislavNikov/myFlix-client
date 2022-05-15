@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./registration-view.scss";
 
-export function RegistrationView(props) { 
+export function RegistrationView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ export function RegistrationView(props) {
   });
 
   const validate = () => {
-    let isReq = true;    
+    let isReq = true;
     if (!username) {
       setValues({ ...value, usernameErr: "username is required" });
       isReq = false;
@@ -38,7 +38,7 @@ export function RegistrationView(props) {
     const isReq = validate();
     if (isReq) {
       axios
-        .post("https://myflixxxdb.herokuapp.com/users", {        
+        .post("https://myflixxxdb.herokuapp.com/users", {
           Username: username,
           Password: password,
           Email: email,
@@ -105,14 +105,15 @@ export function RegistrationView(props) {
             />
           </Form.Group>
 
-          
           <Button variant="primary" type="submit" onClick={handleRegister}>
             Register
           </Button>
           <p></p>
-         {/*  <p>
-            Already registered!<Link to={"/"}>Sign in</Link> here!
-          </p> */}
+          <p>
+            Already registered?&nbsp;            
+                <span><Link style={{ textDecoration: 'none' }} to={"/"}>Sign in</Link></span>          
+                &nbsp;here!
+          </p>
         </Form>
       </Col>
     </Row>
@@ -126,7 +127,6 @@ RegistrationView.propTypes = {
     Email: PropTypes.string.isRequired,
   }),
 };
-
 
 /* <form onSubmit={handleRegister}>
       <label>

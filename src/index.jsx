@@ -7,14 +7,17 @@ import { MainView } from "./components/main-view/main-view";
 // Import statement to indicate that you need to bundle "./index.scss"
 import "./style.scss";
 import { Container } from "react-bootstrap";
+import { BrowserRouter } from "react-router-dom";
 
 // Main component
 class MyFlixApplication extends React.Component {
   render() {
     return (
-      <Container>
-        <MainView />
-      </Container>
+      <BrowserRouter>
+        <Container>
+          <MainView />
+        </Container>
+      </BrowserRouter>
     );
   }
 }

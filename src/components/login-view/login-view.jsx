@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button, Form } from "react-bootstrap/Button";
 import axios from "axios";
 
 export function LoginView(props) {
@@ -57,12 +57,12 @@ export function LoginView(props) {
 
   return (
     <Form>
-      <Form.Group controlId='formUsername'>
+      <Form.Group controlId="formUsername">
         <Form.Label>
           Username:
           <Form.Control
-            type='text'
-            placeholder='Enter your username'
+            type="text"
+            placeholder="Enter your username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -71,12 +71,12 @@ export function LoginView(props) {
         </Form.Label>
       </Form.Group>
 
-      <Form.Group controlId='formPassword'>
+      <Form.Group controlId="formPassword">
         <Form.Label>
           Password:
           <Form.Control
-            type='password'
-            placeholder='Enter your password'
+            type="password"
+            placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -85,7 +85,7 @@ export function LoginView(props) {
         </Form.Label>
       </Form.Group>
 
-      <Button variant='primary' type='submit' onClick={handleSubmit}>
+      <Button variant="primary" type="submit" onClick={handleSubmit}>
         Submit
       </Button>
     </Form>
