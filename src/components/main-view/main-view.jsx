@@ -11,7 +11,8 @@ import { RegistrationView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from "../profile-view/profile-view";
-import { UserUpdate } from "../profile-view/user-update.jsx";
+import { UserUpdate } from "../profile-view/user-update";
+import { ErrorBoundary } from "../error-boundary/error-boundary";
 
 export class MainView extends React.Component {
   constructor() {
@@ -35,11 +36,12 @@ export class MainView extends React.Component {
     }
   }
 
-  onLoggedIn(authData) {
+  onLoggedIn(authData, loggedInStatus) {
     console.log(authData);
+    console.log(loggedInStatus);
     this.setState({
       user: authData.user.Username,
-      /* loggedInStatus: 'LOGGED_IN', */
+      loggedInStatus: "LOGGED_IN!",
     });
 
     localStorage.setItem("token", authData.token);
@@ -92,7 +94,9 @@ export class MainView extends React.Component {
                     </Col>
                   );
                 }
-                if (movies.length === 0)
+                if (movies.length === 0) {
+                  console.log(user + "-------");
+                  console.log(loggedInStatus);
                   return (
                     <div className="main-view">
                       <Button variant="dark" disabled>
@@ -107,6 +111,7 @@ export class MainView extends React.Component {
                       </Button>
                     </div>
                   );
+                }
 
                 return movies.map((movie) => (
                   <Col md={3} className="col-sm d-flex" key={movie._id}>
