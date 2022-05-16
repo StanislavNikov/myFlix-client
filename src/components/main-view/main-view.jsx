@@ -78,11 +78,8 @@ export class MainView extends React.Component {
     return (
       <Router>
         <NavbarMenu user={user} />
-        <Container
-          className=" container-fluid m-0 p-0"
-          style={{ maxWidth: "100%" }}
-        >
-          <Row className="main-view justify-content-md-center">
+        <Container className="container-fluid" style={{ maxWidth: "100%" }}>
+          <Row className="main-view justify-content-md-center d-flex flex-wrap m-0 p-0">
             <Route
               exact
               path="/"
