@@ -14,7 +14,7 @@ class MyFlixApplication extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Container>
+        <Container className="m-0 p-0" style={{ maxWidth: "100%" }}>
           <MainView />
         </Container>
       </BrowserRouter>
