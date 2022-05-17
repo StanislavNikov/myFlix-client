@@ -54,6 +54,7 @@ export class MainView extends React.Component {
     localStorage.removeItem("user");
     this.setState({
       user: null,
+      loggedInStatus: "Not Logged In",
     });
   }
 
@@ -90,7 +91,11 @@ export class MainView extends React.Component {
                   return (
                     <Col>
                       <h1>Status: {this.state.loggedInStatus}</h1>
-                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                      <LoginView
+                        onLoggedIn={(user, loggedInStatus) =>
+                          this.onLoggedIn(user, loggedInStatus)
+                        }
+                      />
                     </Col>
                   );
                 }
@@ -189,21 +194,23 @@ export class MainView extends React.Component {
               }}
             />
 
-            <Route
-              path={`/users/${user}`}
-              render={({ match, history }) => {
-                if (!user) return <Redirect to="/" />;
-                return (
-                  <Col>
-                    <ProfileView
-                      movies={movies}
-                      user={user}
-                      onBackClick={() => history.goBack()}
-                    />
-                  </Col>
-                );
-              }}
-            />
+            <ErrorBoundary>
+              <Route
+                path={`/users/${user}`}
+                render={({ match, history }) => {
+                  if (!user) return <Redirect to="/" />;
+                  return (
+                    <Col>
+                      <ProfileView
+                        movies={movies}
+                        user={user}
+                        onBackClick={() => history.goBack()}
+                      />
+                    </Col>
+                  );
+                }}
+              />
+            </ErrorBoundary>
 
             <Route
               path={`/users-update/${user}`}

@@ -9,7 +9,7 @@ export function RegistrationView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [Birthdate, setBirthdate] = useState("");
   const [values, setValues] = useState({
     usernameErr: "",
     passwordErr: "",
@@ -42,7 +42,7 @@ export function RegistrationView(props) {
           Username: username,
           Password: password,
           Email: email,
-          Birthday: birthday,
+          Birthdate: Birthdate,
         })
         .then((response) => {
           const data = response.data;
@@ -95,13 +95,13 @@ export function RegistrationView(props) {
             {values.emailErr && <p>{values.emailErr}</p>}
           </Form.Group>
 
-          <Form.Group controlId="formBirthday" className="reg-form-inputs">
-            <Form.Label>Birthday:</Form.Label>
+          <Form.Group controlId="formBirthdate" className="reg-form-inputs">
+            <Form.Label>Birthdate:</Form.Label>
             <Form.Control
               type="date"
-              name="birthday"
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}
+              name="Birthdate"
+              value={Birthdate}
+              onChange={(e) => setBirthdate(e.target.value)}
             />
           </Form.Group>
 
@@ -110,9 +110,13 @@ export function RegistrationView(props) {
           </Button>
           <p></p>
           <p>
-            Already registered?&nbsp;            
-                <span><Link style={{ textDecoration: 'none' }} to={"/"}>Sign in</Link></span>          
-                &nbsp;here!
+            Already registered?&nbsp;
+            <span>
+              <Link style={{ textDecoration: "none" }} to={"/"}>
+                Sign in
+              </Link>
+            </span>
+            &nbsp;here!
           </p>
         </Form>
       </Col>
@@ -120,6 +124,8 @@ export function RegistrationView(props) {
   );
 }
 
+// ==========================================================
+// BRING BACK BIRTHDATE VALIDATION
 RegistrationView.propTypes = {
   register: PropTypes.shape({
     Username: PropTypes.string.isRequired,
@@ -172,14 +178,14 @@ RegistrationView.propTypes = {
       </label>
 
       <label>
-        Birthday:
+        Birthdate:
         <input
           type='date'
-          value={birthday}
-          placeholder='Birthday'
+          value={birthdate}
+          placeholder='Birthdate'
           onChange={(e) => {
             console.log("handle change", e);
-            setBirthday(e.target.value);
+            setBirthdate(e.target.value);
           }}
           required
         />
